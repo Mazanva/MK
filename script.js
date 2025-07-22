@@ -110,3 +110,82 @@ function closeModal() {
     document.body.style.overflow = "auto"; // Restore scrolling
   }, 300);
 }
+// Add this to your script.js file
+
+// Set background images from data attributes
+document.addEventListener("DOMContentLoaded", function () {
+  const projectCards = document.querySelectorAll(".project-card[data-bg]");
+
+  projectCards.forEach((card) => {
+    const bgImage = card.dataset.bg;
+    if (bgImage) {
+      card.style.backgroundImage = `url(${bgImage})`;
+    }
+  });
+});
+
+// Modal functionality (if you don't have it already)
+function openModal(imageSrc, title, description) {
+  const modal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDescription = document.getElementById("modalDescription");
+
+  modalImage.src = imageSrc;
+  modalImage.alt = title;
+  modalTitle.textContent = title;
+  modalDescription.textContent = description;
+
+  modal.style.display = "block";
+  modal.setAttribute("aria-hidden", "false");
+
+  // Add show class after display block for animation
+  setTimeout(() => modal.classList.add("show"), 10);
+}
+
+// Close modal functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("imageModal");
+  const closeBtn = document.querySelector(".close");
+
+  // Close on X button click
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close on outside click
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+
+  // Project cards click handlers
+  const projectCards = document.querySelectorAll(
+    ".project-card[data-modal-img]"
+  );
+  projectCards.forEach((card) => {
+    card.addEventListener("click", function () {
+      const imageSrc = this.dataset.modalImg;
+      const title = this.dataset.modalTitle;
+      const description = this.dataset.modalDesc;
+      openModal(imageSrc, title, description);
+    });
+  });
+});
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+
+  // Hide modal after animation completes
+  setTimeout(() => {
+    modal.style.display = "none";
+  }, 300);
+}

@@ -7,17 +7,25 @@
       name="description"
       content="MK Portfolio - Vidím, co ostatní přehlédnou"
     />
+    <meta name="keywords" content="UI/UX design, portfolio, Matyáš Kopčák" />
+    <meta name="author" content="Matyáš Kopčák" />
     <title>MK - Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preload" href="pic/temp-logo.svg" as="image" />
+    <link rel="preload" href="pic/Pic.jpg" as="image" />
   </head>
   <body>
     <nav>
-      <img src="pic/temp-logo.svg" alt="Logo" class="logo" />
-      <div class="menu-toggle">
+      <img src="pic/temp-logo.svg" alt="MK Logo" class="logo" />
+      <button
+        class="menu-toggle"
+        aria-label="Otevřít menu"
+        aria-expanded="false"
+      >
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
       <ul class="nav-menu">
         <li><a href="#home">Domů</a></li>
         <li><a href="#about">O mně</a></li>
@@ -26,76 +34,113 @@
       </ul>
     </nav>
 
-    <section id="home">
-      <h1 class="hero-title">„Vidím, co ostatní přehlédnou."</h1>
-    </section>
+    <main>
+      <section id="home">
+        <h1 class="hero-title">„Vidím, co ostatní přehlédnou."</h1>
+      </section>
 
-    <h2 class="section-title">O mně</h2>
-
-    <section id="about">
-      <div class="about-card">
-        <div class="card-content">
-          <div class="photo-container">
-            <img src="pic/Pic.jpg" alt="Profilová fotografie" />
-            <div class="photo-overlay"></div>
+      <h2 class="section-title">O mně</h2>
+      <section id="about">
+        <article class="about-card">
+          <div class="card-content">
+            <div class="photo-container">
+              <img
+                src="pic/Pic.jpg"
+                alt="Profilová fotografie Matyáše Kopčáka"
+              />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="text-content">
+              <h3>Matyáš Kopčák</h3>
+              <p>
+                Junior UI/UX designér.<br />
+                Snažím se vidět to co ostatní přehlédnou. Detailista, který
+                odhaluje skryté možnosti a hledá způsoby, jak věci zjednodušit,
+                zpřehlednit a zpříjemnit k používání. Zkušenosti teprve sbírám,
+                ale ke každému úkolu přistupuji zodpovědně a s otevřenou hlavou.
+                Mým cílem je vylepšovat digitální prostředí a navrhovat řešení,
+                která dávají smysl a skutečně fungují.
+              </p>
+            </div>
           </div>
-          <div class="text-content">
-            <h2>Matyáš Kopčák</h2>
-            <p>
-              Junior UI/UX designér. <br />
-              Snažím se vidět to co ostatní přehlédnou. Detailista, který
-              odhaluje skryté možnosti a hledá způsoby, jak věci zjednodušit,
-              zpřehlednit a zpříjemnit k používání. Zkušenosti teprve sbírám,
-              ale ke každému úkolu přistupuji zodpovědně a s otevřenou hlavou.
-              Mým cílem je vylepšovat digitální prostředí a navrhovat řešení,
-              která dávají smysl a skutečně fungují.
-            </p>
+        </article>
+      </section>
+
+      <h2 class="section-title">Projekty</h2>
+      <section id="projects">
+        <div class="projects-grid">
+          <article
+            class="project-card project-card-large"
+            data-bg="pic/projekt1.svg"
+            data-modal-img="pic/projekt1.svg"
+            data-modal-title="Komponenty"
+            data-modal-desc="Komponenty na přání přímo pro váš web."
+          >
+            <div class="project-content">
+              <h3>Komponenty</h3>
+              <p>Komponenty na přání přímo pro váš web.</p>
+            </div>
+          </article>
+
+          <article
+            class="project-card project-card-top"
+            data-bg="pic/projekt2.svg"
+            data-modal-img="pic/projekt2.svg"
+            data-modal-title="Redesign aplikace"
+            data-modal-desc="Kompletní redesign mobilní aplikace s důrazem na uživatelskou přívětivost."
+          >
+            <div class="project-content">
+              <h3>Redesign aplikace</h3>
+              <p>Mobilní aplikace s novým designem.</p>
+            </div>
+          </article>
+
+          <article
+            class="project-card project-card-bottom"
+            data-bg="pic/projekt-3.svg"
+            data-modal-img="pic/projekt-3.svg"
+            data-modal-title="Webové rozhraní"
+            data-modal-desc="Moderní webové rozhraní pro správu obsahu s intuitivním ovládáním."
+          >
+            <div class="project-content">
+              <h3>Webové rozhraní</h3>
+              <p>Správa obsahu s intuitivním ovládáním.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <h2 class="section-title">Kontakt</h2>
+      <section id="contact">
+        <div class="contact-card">
+          <div class="contact-content">
+            <h3>Pojďme vytvořit něco úžasného</h3>
+            <p>Máte projekt, který potřebuje osvěžit?</p>
+            <div class="contact-info">
+              <a href="mailto:your.email@example.com" class="contact-link">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">kopcak.mat@proton.me</span>
+              </a>
+              <a href="tel:+420123456789" class="contact-link">
+                <span class="contact-label">Telefon</span>
+                <span class="contact-value">+420 721 901 041</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <h2 class="section-title">Projekty</h2>
-
-    <section id="projects">
-      <div class="projects-grid">
-        <div
-          class="project-card project-card-large"
-          style="background-image: url(pic/Projekt\ 1.svg)"
-          onclick="openModal('PROJECT_1_IMAGE_URL_HERE', 'Projekt 1', 'Popis projektu zde...')"
-        >
-          <div class="project-content">
-            <h3>Projekt 1</h3>
-            <p>Popis projektu zde...</p>
-          </div>
-        </div>
-        <div
-          class="project-card project-card-top"
-          style="background-image: url('PROJECT_2_IMAGE_URL_HERE')"
-          onclick="openModal('PROJECT_2_IMAGE_URL_HERE', 'Projekt 2', 'Krátký popis...')"
-        >
-          <div class="project-content">
-            <h3>Projekt 2</h3>
-            <p>Krátký popis...</p>
-          </div>
-        </div>
-        <div
-          class="project-card project-card-bottom"
-          style="background-image: url('PROJECT_3_IMAGE_URL_HERE')"
-          onclick="openModal('PROJECT_3_IMAGE_URL_HERE', 'Projekt 3', 'Krátký popis...')"
-        >
-          <div class="project-content">
-            <h3>Projekt 3</h3>
-            <p>Krátký popis...</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- Modal for project images -->
-    <div id="imageModal" class="modal">
+    <div
+      id="imageModal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="modalTitle"
+      aria-hidden="true"
+    >
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <button class="close" aria-label="Zavřít modal">&times;</button>
         <img id="modalImage" src="" alt="" />
         <div class="modal-info">
           <h3 id="modalTitle"></h3>
@@ -104,7 +149,9 @@
       </div>
     </div>
 
-    <footer>MK - 2025</footer>
+    <footer>
+      <p>&copy; 2025 MK - Matyáš Kopčák</p>
+    </footer>
 
     <script src="script.js"></script>
   </body>
