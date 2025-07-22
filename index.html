@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MK Portfolio - Vidím, co ostatní přehlédnou"
+    />
     <title>MK - Portfolio</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav>
-      <img src="temp-logo.svg" alt="Logo" class="logo" />
+      <img src="pic/temp-logo.svg" alt="Logo" class="logo" />
       <div class="menu-toggle">
         <span></span>
         <span></span>
@@ -17,36 +21,87 @@
       <ul class="nav-menu">
         <li><a href="#home">Domů</a></li>
         <li><a href="#portfolio">O mně</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#projects">Projekty</a></li>
+        <li><a href="#contact">Kontakt</a></li>
       </ul>
     </nav>
+
     <section id="home">
-      <h1 class="h1">„Vidím, co ostatní přehlédnou.“</h1>
+      <h1 class="hero-title">„Vidím, co ostatní přehlédnou."</h1>
     </section>
-    <h2>O mně</h2>
+
+    <h2 class="section-title">O mně</h2>
+
     <section id="portfolio">
-      <div class="o-mne">
-        <div class="photo">
-          <img src="Pic.jpg" alt="Obličej" />
-        </div>
-        <div class="text">
-          <p>
-            Jsem pečlivý detailista, který odhaluje skryté možnosti. Mým cílem
-            je vylepšit vaše digitální prostředí.
-          </p>
+      <div class="about-card">
+        <div class="decorative-quote">"</div>
+        <div class="card-content">
+          <div class="photo-container">
+            <img src="pic/Pic.jpg" alt="Profilová fotografie" />
+            <div class="photo-overlay"></div>
+          </div>
+          <div class="text-content">
+            <p>
+              Jsem pečlivý detailista, který odhaluje skryté možnosti. Mým cílem
+              je vylepšit vaše digitální prostředí a přinést řešení, která
+              překonají vaše očekávání.
+            </p>
+          </div>
         </div>
       </div>
     </section>
-    <footer>Ach jo</footer>
-    <script>
-      const menuToggle = document.querySelector(".menu-toggle");
-      const navMenu = document.querySelector(".nav-menu");
 
-      menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-        menuToggle.classList.toggle("active");
-      });
-    </script>
+    <h2 class="section-title">Projekty</h2>
+
+    <section id="projects">
+      <div class="projects-grid">
+        <div
+          class="project-card project-card-large"
+          style="background-image: url(pic/Projekt\ 1.svg)"
+          onclick="openModal('pic/Projekt\ 1.svg', 'Projekt 1', 'Popis projektu zde...')"
+        >
+          <div class="project-content">
+            <h3>Projekt 1</h3>
+            <p>Popis projektu zde...</p>
+          </div>
+        </div>
+        <div
+          class="project-card project-card-top"
+          style="background-image: url('PROJECT_2_IMAGE_URL_HERE')"
+          onclick="openModal('PROJECT_2_IMAGE_URL_HERE', 'Projekt 2', 'Krátký popis...')"
+        >
+          <div class="project-content">
+            <h3>Projekt 2</h3>
+            <p>Krátký popis...</p>
+          </div>
+        </div>
+        <div
+          class="project-card project-card-bottom"
+          style="background-image: url('PROJECT_3_IMAGE_URL_HERE')"
+          onclick="openModal('PROJECT_3_IMAGE_URL_HERE', 'Projekt 3', 'Krátký popis...')"
+        >
+          <div class="project-content">
+            <h3>Projekt 3</h3>
+            <p>Krátký popis...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for project images -->
+    <div id="imageModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="" />
+        <div class="modal-info">
+          <h3 id="modalTitle"></h3>
+          <p id="modalDescription"></p>
+        </div>
+      </div>
+    </div>
+
+    <footer>MK - 2025</footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
