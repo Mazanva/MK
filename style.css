@@ -79,11 +79,11 @@ ul li a {
   font-size: 0.75rem;
   padding: 0.5rem;
   font-weight: 600;
-  transition: color 0.3s;
+  transition: color 0.5s;
 }
 
 ul li a:hover {
-  color: #00cc99;
+  color: var(--background-color);
 }
 
 .menu-toggle {
