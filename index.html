@@ -5,53 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="MK Portfolio - Vidím, co ostatní přehlédnou"
+      content="Matyáš Kopčák - Junior UI/UX designér. Vidím, co ostatní přehlédnou. Webový design a uživatelské rozhraní."
     />
-    <meta name="keywords" content="UI/UX design, portfolio, Matyáš Kopčák" />
+    <meta
+      name="keywords"
+      content="UI/UX design, portfolio, Matyáš Kopčák, webdesign, uživatelské rozhraní"
+    />
     <meta name="author" content="Matyáš Kopčák" />
-    <title>MK - Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preload" href="pic/temp-logo.svg" as="image" />
-    <link rel="preload" href="pic/Pic.jpg" as="image" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="MK Portfolio - Matyáš Kopčák" />
+    <meta
+      property="og:description"
+      content="Junior UI/UX designér. Vidím, co ostatní přehlédnou."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+
+    <title>MK Portfolio - Matyáš Kopčák | UI/UX Designer</title>
+
+    <!-- Optimized resource loading -->
+    <link
+      rel="preload"
+      href="pic/temp-logo.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link rel="preload" href="pic/Pic.jpg" as="image" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="style.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="style.css" /></noscript>
   </head>
   <body>
-    <nav>
-      <img src="pic/temp-logo.svg" alt="MK Logo" class="logo" />
+    <nav role="navigation" aria-label="Hlavní navigace">
+      <a href="#home" role="menuitem">
+        <img
+          src="pic/temp-logo.svg"
+          alt="MK Logo"
+          class="logo"
+          width="96"
+          height="48"
+        />
+      </a>
       <button
         class="menu-toggle"
-        aria-label="Otevřít menu"
+        aria-label="Otevřít navigační menu"
         aria-expanded="false"
+        aria-controls="nav-menu"
+        type="button"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </button>
-      <ul class="nav-menu">
-        <li><a href="#home">Domů</a></li>
-        <li><a href="#about">O mně</a></li>
-        <li><a href="#projects">Projekty</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+      <ul id="nav-menu" class="nav-menu" role="menubar">
+        <li role="none"><a href="#about" role="menuitem">O mně</a></li>
+        <li role="none"><a href="#projects" role="menuitem">Projekty</a></li>
+        <li role="none"><a href="#contact" role="menuitem">Kontakt</a></li>
       </ul>
     </nav>
 
-    <main>
-      <section id="home">
-        <h1 class="hero-title">„Vidím, co ostatní přehlédnou."</h1>
+    <main id="main-content">
+      <section id="home" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero-title">
+          „Vidím, co ostatní přehlédnou.“
+        </h1>
       </section>
 
       <h2 class="section-title">O mně</h2>
-      <section id="about">
+      <section id="about" aria-labelledby="about-heading">
         <article class="about-card">
           <div class="card-content">
             <div class="photo-container">
               <img
                 src="pic/Pic.jpg"
-                alt="Profilová fotografie Matyáše Kopčáka"
+                alt="Profilová fotografie Matyáše Kopčáka - junior UI/UX designéra"
+                width="400"
+                height="300"
+                loading="lazy"
               />
-              <div class="photo-overlay"></div>
+              <div class="photo-overlay" aria-hidden="true"></div>
             </div>
             <div class="text-content">
-              <h3>Matyáš Kopčák</h3>
+              <h3 id="about-heading">Matyáš Kopčák</h3>
               <p>
                 Junior UI/UX designér.<br />
                 Snažím se vidět to co ostatní přehlédnou. Detailista, který
@@ -67,7 +110,7 @@
       </section>
 
       <h2 class="section-title">Projekty</h2>
-      <section id="projects">
+      <section id="projects" aria-labelledby="projects-heading">
         <div class="projects-grid">
           <article
             class="project-card project-card-large"
@@ -75,6 +118,9 @@
             data-modal-img="pic/projekt1.svg"
             data-modal-title="Komponenty"
             data-modal-desc="Komponenty na přání přímo pro váš web."
+            tabindex="0"
+            role="button"
+            aria-label="Otevřít detail projektu Komponenty"
           >
             <div class="project-content">
               <h3>Komponenty</h3>
@@ -88,6 +134,9 @@
             data-modal-img="pic/projekt2.svg"
             data-modal-title="Redesign aplikace"
             data-modal-desc="Kompletní redesign mobilní aplikace s důrazem na uživatelskou přívětivost."
+            tabindex="0"
+            role="button"
+            aria-label="Otevřít detail projektu Redesign aplikace"
           >
             <div class="project-content">
               <h3>Redesign aplikace</h3>
@@ -101,6 +150,9 @@
             data-modal-img="pic/projekt-3.svg"
             data-modal-title="Webové rozhraní"
             data-modal-desc="Moderní webové rozhraní pro správu obsahu s intuitivním ovládáním."
+            tabindex="0"
+            role="button"
+            aria-label="Otevřít detail projektu Webové rozhraní"
           >
             <div class="project-content">
               <h3>Webové rozhraní</h3>
@@ -111,17 +163,25 @@
       </section>
 
       <h2 class="section-title">Kontakt</h2>
-      <section id="contact">
+      <section id="contact" aria-labelledby="contact-heading">
         <div class="contact-card">
           <div class="contact-content">
-            <h3>Pojďme vytvořit něco úžasného</h3>
+            <h3 id="contact-heading">Pojďme vytvořit něco úžasného</h3>
             <p>Máte projekt, který potřebuje osvěžit?</p>
             <div class="contact-info">
-              <a href="mailto:your.email@example.com" class="contact-link">
+              <a
+                href="mailto:kopcak.mat@proton.me"
+                class="contact-link"
+                aria-label="Odeslat email na kopcak.mat@proton.me"
+              >
                 <span class="contact-label">Email</span>
                 <span class="contact-value">kopcak.mat@proton.me</span>
               </a>
-              <a href="tel:+420123456789" class="contact-link">
+              <a
+                href="tel:+420721901041"
+                class="contact-link"
+                aria-label="Zavolat na číslo +420 721 901 041"
+              >
                 <span class="contact-label">Telefon</span>
                 <span class="contact-value">+420 721 901 041</span>
               </a>
@@ -137,11 +197,15 @@
       class="modal"
       role="dialog"
       aria-labelledby="modalTitle"
+      aria-describedby="modalDescription"
       aria-hidden="true"
+      aria-modal="true"
     >
       <div class="modal-content">
-        <button class="close" aria-label="Zavřít modal">&times;</button>
-        <img id="modalImage" src="" alt="" />
+        <button class="close" type="button" aria-label="Zavřít modal">
+          &times;
+        </button>
+        <img id="modalImage" src="" alt="" loading="lazy" />
         <div class="modal-info">
           <h3 id="modalTitle"></h3>
           <p id="modalDescription"></p>
@@ -149,10 +213,25 @@
       </div>
     </div>
 
-    <footer>
+    <footer role="contentinfo">
       <p>&copy; 2025 MK - Matyáš Kopčák</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+      // Optimized JavaScript - inline critical functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set background images immediately to prevent layout shift
+        const projectCards = document.querySelectorAll(
+          ".project-card[data-bg]"
+        );
+        projectCards.forEach((card) => {
+          const bgImage = card.dataset.bg;
+          if (bgImage) {
+            card.style.backgroundImage = `url(${bgImage})`;
+          }
+        });
+      });
+    </script>
+    <script src="script.js" defer></script>
   </body>
 </html>
