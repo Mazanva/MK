@@ -23,12 +23,32 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
+
+      // Remove focus from the clicked link
+      this.blur();
+
+      const targetId = this.getAttribute("href");
+      const target = document.querySelector(targetId);
+
       if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        // Try multiple methods for better compatibility
+        if ("scrollBehavior" in document.documentElement.style) {
+          // Modern browsers
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
+        } else {
+          // Fallback for older browsers
+          const targetPosition =
+            target.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+
         // Close mobile menu if open
         navMenu.classList.remove("active");
         menuToggle.classList.remove("active");

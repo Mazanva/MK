@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -31,7 +36,6 @@ body {
   color: var(--text-color);
   min-height: 100vh;
   line-height: 1.6;
-  scroll-behavior: smooth;
 }
 
 /* NAVIGATION STYLES */
@@ -113,8 +117,14 @@ ul li a {
 ul li a:hover,
 ul li a:focus {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+}
+
+ul li a:focus {
   outline: none;
+}
+
+ul li a:active {
+  background-color: transparent;
 }
 
 .menu-toggle {
@@ -195,11 +205,10 @@ ul li a:focus {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.1;
 }
 
 /* ABOUT SECTION - CARD DESIGN */
-#portfolio {
+#about {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
