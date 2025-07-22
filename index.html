@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MK - Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <img src="temp-logo.svg" alt="Logo" class="logo" />
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Domů</a></li>
+        <li><a href="#portfolio">O mně</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <section id="home">
+      <h1 class="h1">„Vidím, co ostatní přehlédnou.“</h1>
+    </section>
+    <h2>O mně</h2>
+    <section id="portfolio">
+      <div class="o-mne">
+        <div class="photo">
+          <img src="Pic.jpg" alt="Obličej" />
+        </div>
+        <div class="text">
+          <p>
+            Jsem pečlivý detailista, který odhaluje skryté možnosti. Mým cílem
+            je vylepšit vaše digitální prostředí.
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>konec</footer>
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector(".nav-menu");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
