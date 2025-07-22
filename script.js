@@ -73,10 +73,20 @@ function openModal(imageSrc, title, description) {
 
   modal.style.display = "block";
   document.body.style.overflow = "hidden"; // Prevent background scrolling
+
+  // Trigger animation
+  setTimeout(() => {
+    modal.classList.add("show");
+  }, 10);
 }
 
 function closeModal() {
   const modal = document.getElementById("imageModal");
-  modal.style.display = "none";
-  document.body.style.overflow = "auto"; // Restore scrolling
+  modal.classList.remove("show");
+
+  // Wait for animation to complete before hiding
+  setTimeout(() => {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto"; // Restore scrolling
+  }, 300);
 }
