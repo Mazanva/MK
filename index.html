@@ -1,64 +1,47 @@
 <!DOCTYPE html>
 <html lang="cs">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Matyáš Kopčák - Junior UI/UX designér. Vidím, co ostatní přehlédnou. Webový design a uživatelské rozhraní."
-    />
-    <meta
-      name="keywords"
-      content="UI/UX design, portfolio, Matyáš Kopčák, webdesign, uživatelské rozhraní"
-    />
-    <meta name="author" content="Matyáš Kopčák" />
-    <meta name="robots" content="index, follow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Matyáš Kopčák - Junior UI/UX designér. Vidím, co ostatní přehlédnou. Webový design a uživatelské rozhraní."
+  />
+  <meta
+    name="keywords"
+    content="UI/UX design, portfolio, Matyáš Kopčák, webdesign, uživatelské rozhraní"
+  />
+  <meta name="author" content="Matyáš Kopčák" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="MK Portfolio - Matyáš Kopčák" />
-    <meta
-      property="og:description"
-      content="Junior UI/UX designér. Vidím, co ostatní přehlédnou."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="cs_CZ" />
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="MK Portfolio - Matyáš Kopčák" />
+  <meta
+    property="og:description"
+    content="Junior UI/UX designér. Vidím, co ostatní přehlédnou."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="cs_CZ" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="pic/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="pic/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="pic/favicon-16x16.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="pic/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="site.webmanifest" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="pic/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="pic/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="pic/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="pic/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
 
-    <title>MK Portfolio - Matyáš Kopčák | UI/UX Designer</title>
+  <title>MK Portfolio - Matyáš Kopčák | UI/UX Designer</title>
 
-    <!-- Optimized resource loading -->
-    <link rel="preload" href="pic/logo.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="pic/Pic.jpg" as="image" type="image/jpeg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <!-- Optimized resource loading -->
+  <link rel="preload" href="pic/logo.svg" as="image" type="image/svg+xml" />
+  <link rel="preload" href="pic/Pic.jpg" as="image" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 
-    <link
-      rel="stylesheet"
-      href="style.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript><link rel="stylesheet" href="style.css" /></noscript>
-  </head>
+  <!-- CSS (preload + fallback, bez FOUC) -->
+  <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
+</head>
+
   <body>
     <nav role="navigation" aria-label="Hlavní navigace">
       <a href="#home" role="menuitem">
@@ -251,3 +234,4 @@
     <script src="script.js" defer></script>
   </body>
 </html>
+
