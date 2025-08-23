@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="cs">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Matyáš Kopčák - Junior UI/UX designér. Vidím, co ostatní přehlédnou. Webový design a uživatelské rozhraní."
-  />
-  <meta
-    name="keywords"
-    content="UI/UX design, portfolio, Matyáš Kopčák, webdesign, uživatelské rozhraní"
-  />
-  <meta name="author" content="Matyáš Kopčák" />
-  <meta name="robots" content="index, follow" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Matyáš Kopčák - Junior UI/UX designér. Vidím, co ostatní přehlédnou. Webový design a uživatelské rozhraní."
+    />
+    <meta
+      name="keywords"
+      content="UI/UX design, portfolio, Matyáš Kopčák, webdesign, uživatelské rozhraní"
+    />
+    <meta name="author" content="Matyáš Kopčák" />
+    <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph tags -->
-  <meta property="og:title" content="MK Portfolio - Matyáš Kopčák" />
-  <meta
-    property="og:description"
-    content="Junior UI/UX designér. Vidím, co ostatní přehlédnou."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="cs_CZ" />
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="MK Portfolio - Matyáš Kopčák" />
+    <meta
+      property="og:description"
+      content="Junior UI/UX designér. Vidím, co ostatní přehlédnou."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="pic/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="pic/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="pic/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="pic/apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="pic/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="pic/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="pic/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="pic/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
 
-  <title>MK Portfolio - Matyáš Kopčák | UI/UX Designer</title>
+    <title>MK Portfolio - Matyáš Kopčák | UI/UX Designer</title>
 
-  <!-- Optimized resource loading -->
-  <link rel="preload" href="pic/logo.svg" as="image" type="image/svg+xml" />
-  <link rel="preload" href="pic/Pic.jpg" as="image" type="image/jpeg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <!-- Optimized resource loading -->
+    <link rel="preload" href="pic/logo.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="pic/Pic.jpg" as="image" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 
-  <!-- CSS (preload + fallback, bez FOUC) -->
-  <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="style.css"></noscript>
-</head>
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
   <body>
     <nav role="navigation" aria-label="Hlavní navigace">
       <a href="#home" role="menuitem">
@@ -74,7 +86,7 @@
     <main id="main-content">
       <section id="home" aria-labelledby="hero-title">
         <h1 id="hero-title" class="hero-title">
-          „Vidím, co ostatní přehlédnou.“
+          „Vidím, co ostatní přehlédnou."
         </h1>
       </section>
 
@@ -110,54 +122,49 @@
 
       <h2 class="section-title">Projekty</h2>
       <section id="projects" aria-labelledby="projects-heading">
-        <div class="projects-grid">
-          <article
-            class="project-card project-card-large"
-            data-bg="pic/projekt1.svg"
-            data-modal-img="pic/projekt1.svg"
-            data-modal-title="Komponenty"
-            data-modal-desc="Komponenty na přání přímo pro váš web."
-            tabindex="0"
-            role="button"
-            aria-label="Otevřít detail projektu Komponenty"
-          >
-            <div class="project-content">
-              <h3>Komponenty</h3>
-              <p>Komponenty na přání přímo pro váš web.</p>
-            </div>
-          </article>
+        <div class="showcase-container" id="showcase">
+          <div class="showcase-preview" id="showcasePreview">
+            <!-- Navigation Arrows -->
+            <button class="nav-arrow prev" aria-label="Předchozí projekt">
+              <svg viewBox="0 0 24 24">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
 
-          <article
-            class="project-card project-card-top"
-            data-bg="pic/projekt2.svg"
-            data-modal-img="pic/projekt2.svg"
-            data-modal-title="Redesign aplikace"
-            data-modal-desc="Kompletní redesign mobilní aplikace s důrazem na uživatelskou přívětivost."
-            tabindex="0"
-            role="button"
-            aria-label="Otevřít detail projektu Redesign aplikace"
-          >
-            <div class="project-content">
-              <h3>Redesign aplikace</h3>
-              <p>Mobilní aplikace s novým designem.</p>
-            </div>
-          </article>
+            <button class="nav-arrow next" aria-label="Následující projekt">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
 
-          <article
-            class="project-card project-card-bottom"
-            data-bg="pic/projekt3.webp"
-            data-modal-img="pic/projekt3.webp"
-            data-modal-title="Webové rozhraní"
-            data-modal-desc="Moderní webové rozhraní pro správu obsahu s intuitivním ovládáním."
-            tabindex="0"
-            role="button"
-            aria-label="Otevřít detail projektu Webové rozhraní"
-          >
-            <div class="project-content">
-              <h3>Webové rozhraní</h3>
-              <p>Správa obsahu s intuitivním ovládáním.</p>
+            <!-- Slides Container -->
+            <div class="slides-container">
+              <div class="slide active">
+                <div class="slide-bg"></div>
+              </div>
+              <div class="slide">
+                <div class="slide-bg"></div>
+              </div>
+              <div class="slide">
+                <div class="slide-bg"></div>
+              </div>
             </div>
-          </article>
+
+            <div class="showcase-content">
+              <h3 id="projectTitle">Komponenty</h3>
+              <p id="projectDescription">
+                Komponenty na přání přímo pro váš web. Moderní, responzivní a
+                snadno integrovatelné řešení pro každý projekt.
+              </p>
+            </div>
+
+            <!-- Slide Indicators -->
+            <div class="slide-indicators">
+              <span class="indicator active" data-slide="0"></span>
+              <span class="indicator" data-slide="1"></span>
+              <span class="indicator" data-slide="2"></span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -190,48 +197,11 @@
       </section>
     </main>
 
-    <!-- Modal for project images -->
-    <div
-      id="imageModal"
-      class="modal"
-      role="dialog"
-      aria-labelledby="modalTitle"
-      aria-describedby="modalDescription"
-      aria-hidden="true"
-      aria-modal="true"
-    >
-      <div class="modal-content">
-        <button class="close" type="button" aria-label="Zavřít modal">
-          &times;
-        </button>
-        <img id="modalImage" src="" alt="" loading="lazy" />
-        <div class="modal-info">
-          <h3 id="modalTitle"></h3>
-          <p id="modalDescription"></p>
-        </div>
-      </div>
-    </div>
-
     <footer role="contentinfo">
       <p>&copy; 2025 MK — Matyáš Kopčák</p>
     </footer>
 
-    <script>
-      // Optimized JavaScript - inline critical functionality
-      document.addEventListener("DOMContentLoaded", function () {
-        // Set background images immediately to prevent layout shift
-        const projectCards = document.querySelectorAll(
-          ".project-card[data-bg]"
-        );
-        projectCards.forEach((card) => {
-          const bgImage = card.dataset.bg;
-          if (bgImage) {
-            card.style.backgroundImage = `url(${bgImage})`;
-          }
-        });
-      });
-    </script>
+    <!-- JavaScript -->
     <script src="script.js" defer></script>
   </body>
 </html>
-

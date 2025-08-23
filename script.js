@@ -1,36 +1,53 @@
-// Optimized Portfolio JavaScript - Removed duplicates and improved performance
+// Manual Slideshow Portfolio JavaScript
 
 (function () {
   "use strict";
 
-  // Cache DOM elements for better performance
-  const elements = {
-    menuToggle: null,
-    navMenu: null,
-    nav: null,
-    modal: null,
-    modalImage: null,
-    modalTitle: null,
-    modalDescription: null,
-    closeBtn: null,
-    projectCards: null,
-    navLinks: null,
-  };
+  // Project data
+  const projects = [
+    {
+      title: "Komponenty",
+      description:
+        "Komponenty na přání přímo pro váš web. Moderní, responzivní a snadno integrovatelné řešení pro každý projekt.",
+      image: "pic/projekt1.svg",
+    },
+    {
+      title: "Redesign aplikace",
+      description:
+        "Kompletní redesign mobilní aplikace s důrazem na uživatelskou přívětivost a intuitivní navigaci.",
+      image: "pic/projekt2.svg",
+    },
+    {
+      title: "Webové rozhraní",
+      description:
+        "Moderní webové rozhraní pro správu obsahu s intuitivním ovládáním a pokročilými funkcemi.",
+      image: "pic/projekt3.webp",
+    },
+  ];
+
+  // Slideshow state
+  let currentSlide = 0;
+  let totalSlides = projects.length;
+
+  // DOM elements will be cached here
+  let elements = {};
 
   // Initialize elements after DOM loads
   function initializeElements() {
-    elements.menuToggle = document.querySelector(".menu-toggle");
-    elements.navMenu = document.querySelector(".nav-menu");
-    elements.nav = document.querySelector("nav");
-    elements.modal = document.getElementById("imageModal");
-    elements.modalImage = document.getElementById("modalImage");
-    elements.modalTitle = document.getElementById("modalTitle");
-    elements.modalDescription = document.getElementById("modalDescription");
-    elements.closeBtn = document.querySelector(".close");
-    elements.projectCards = document.querySelectorAll(
-      ".project-card[data-modal-img]"
-    );
-    elements.navLinks = document.querySelectorAll('a[href^="#"]');
+    elements = {
+      menuToggle: document.querySelector(".menu-toggle"),
+      navMenu: document.querySelector(".nav-menu"),
+      nav: document.querySelector("nav"),
+      showcase: document.getElementById("showcase"),
+      showcasePreview: document.getElementById("showcasePreview"),
+      projectTitle: document.getElementById("projectTitle"),
+      projectDescription: document.getElementById("projectDescription"),
+      navArrows: document.querySelectorAll(".nav-arrow"),
+      indicators: document.querySelectorAll(".indicator"),
+      navLinks: document.querySelectorAll('a[href^="#"]'),
+      slides: document.querySelectorAll(".slide"),
+      slideBgs: document.querySelectorAll(".slide-bg"),
+    };
   }
 
   // Mobile menu functionality
@@ -38,18 +55,13 @@
     if (!elements.menuToggle || !elements.navMenu) return;
 
     elements.menuToggle.addEventListener("click", toggleMobileMenu);
-
-    // Close menu when clicking outside
     document.addEventListener("click", handleOutsideClick);
-
-    // Handle escape key
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleGlobalKeyDown);
   }
 
   function toggleMobileMenu() {
     const isExpanded =
       elements.menuToggle.getAttribute("aria-expanded") === "true";
-
     elements.navMenu.classList.toggle("active");
     elements.menuToggle.classList.toggle("active");
     elements.menuToggle.setAttribute("aria-expanded", !isExpanded);
@@ -67,10 +79,9 @@
     }
   }
 
-  function handleKeyDown(event) {
+  function handleGlobalKeyDown(event) {
     if (event.key === "Escape") {
       closeMobileMenu();
-      closeModal();
     }
   }
 
@@ -89,10 +100,8 @@
 
     if (!targetElement) return;
 
-    // Remove focus from clicked link for better UX
     event.currentTarget.blur();
 
-    // Smooth scroll with better browser support
     const targetPosition =
       targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
 
@@ -101,105 +110,125 @@
       behavior: "smooth",
     });
 
-    // Close mobile menu
     closeMobileMenu();
   }
 
-  // Modal functionality
-  function initializeModal() {
-    if (!elements.modal || !elements.closeBtn) return;
+  // Initialize slideshow functionality
+  function initializeSlideshow() {
+    // Set background images for all slides
+    if (elements.slideBgs && elements.slideBgs.length > 0) {
+      elements.slideBgs.forEach((bg, index) => {
+        if (projects[index]) {
+          bg.style.backgroundImage = `url(${projects[index].image})`;
+        }
+      });
+    }
 
-    elements.closeBtn.addEventListener("click", closeModal);
-    elements.modal.addEventListener("click", handleModalClick);
+    // Set initial project
+    updateProject(0);
 
-    // Project cards click handlers
-    elements.projectCards.forEach((card) => {
-      card.addEventListener("click", handleProjectCardClick);
-      card.addEventListener("keydown", handleProjectCardKeydown);
-    });
-  }
+    // Add navigation arrow listeners
+    if (elements.navArrows) {
+      elements.navArrows.forEach((arrow) => {
+        arrow.addEventListener("click", (event) => {
+          event.stopPropagation();
 
-  function handleProjectCardClick(event) {
-    const card = event.currentTarget;
-    const imageSrc = card.dataset.modalImg;
-    const title = card.dataset.modalTitle;
-    const description = card.dataset.modalDesc;
-
-    openModal(imageSrc, title, description);
-  }
-
-  function handleProjectCardKeydown(event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleProjectCardClick(event);
+          if (arrow.classList.contains("prev")) {
+            prevSlide();
+          } else {
+            nextSlide();
+          }
+        });
+      });
     }
   }
 
-  function handleModalClick(event) {
-    if (event.target === elements.modal) {
-      closeModal();
+  function nextSlide() {
+    const prevIndex = currentSlide;
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateProject(currentSlide, "next", prevIndex);
+  }
+
+  function prevSlide() {
+    const prevIndex = currentSlide;
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateProject(currentSlide, "prev", prevIndex);
+  }
+
+  function updateProject(index, direction = null, prevIndex = null) {
+    const project = projects[index];
+
+    if (!project) return;
+
+    // Update text immediately
+    if (elements.projectTitle) {
+      elements.projectTitle.textContent = project.title;
     }
-  }
 
-  function openModal(imageSrc, title, description) {
-    if (!elements.modal || !imageSrc || !title) return;
+    if (elements.projectDescription) {
+      elements.projectDescription.textContent = project.description;
+    }
 
-    elements.modalImage.src = imageSrc;
-    elements.modalImage.alt = title;
-    elements.modalTitle.textContent = title;
-    elements.modalDescription.textContent = description;
+    // Handle slide animation
+    if (elements.slides && elements.slides.length > 0) {
+      if (direction && prevIndex !== null) {
+        // Animated transition
+        const currentSlideEl = elements.slides[prevIndex];
+        const newSlideEl = elements.slides[index];
 
-    elements.modal.style.display = "block";
-    elements.modal.setAttribute("aria-hidden", "false");
+        // Clear all animation classes
+        elements.slides.forEach((slide) => {
+          slide.classList.remove(
+            "active",
+            "exit-left",
+            "exit-right",
+            "enter-from-left",
+            "enter-from-right"
+          );
+        });
 
-    // Prevent body scrolling
-    document.body.style.overflow = "hidden";
+        if (direction === "next") {
+          // Klik na PRAVOU šipku: současný odejde doprava, nový přijde zleva
+          newSlideEl.classList.add("enter-from-left");
 
-    // Focus management for accessibility
-    elements.modal.focus();
+          requestAnimationFrame(() => {
+            currentSlideEl.classList.add("exit-right");
+            newSlideEl.classList.remove("enter-from-left");
+            newSlideEl.classList.add("active");
+          });
+        } else if (direction === "prev") {
+          // Klik na LEVOU šipku: současný odejde doleva, nový přijde zprava
+          newSlideEl.classList.add("enter-from-right");
 
-    // Trigger animation after display is set
-    requestAnimationFrame(() => {
-      elements.modal.classList.add("show");
-    });
-  }
-
-  function closeModal() {
-    if (!elements.modal) return;
-
-    elements.modal.classList.remove("show");
-    elements.modal.setAttribute("aria-hidden", "true");
-
-    // Hide modal after animation completes
-    setTimeout(() => {
-      elements.modal.style.display = "none";
-      document.body.style.overflow = "auto";
-    }, 300);
-  }
-
-  // Set project background images
-  function setProjectBackgrounds() {
-    const projectCards = document.querySelectorAll(".project-card[data-bg]");
-
-    projectCards.forEach((card) => {
-      const bgImage = card.dataset.bg;
-      if (bgImage) {
-        // Use CSS custom property for better performance
-        card.style.setProperty("--bg-image", `url(${bgImage})`);
-        card.style.backgroundImage = "var(--bg-image)";
+          requestAnimationFrame(() => {
+            currentSlideEl.classList.add("exit-left");
+            newSlideEl.classList.remove("enter-from-right");
+            newSlideEl.classList.add("active");
+          });
+        }
+      } else {
+        // Initial load - just set active
+        elements.slides.forEach((slide, i) => {
+          slide.classList.remove(
+            "active",
+            "exit-left",
+            "exit-right",
+            "enter-from-left",
+            "enter-from-right"
+          );
+          if (i === index) {
+            slide.classList.add("active");
+          }
+        });
       }
-    });
-  }
+    }
 
-  // Performance optimization: Throttled scroll handler
-  let scrollTimeout;
-  function handleScroll() {
-    if (scrollTimeout) return;
-
-    scrollTimeout = setTimeout(() => {
-      // Add any scroll-based functionality here
-      scrollTimeout = null;
-    }, 16); // ~60fps
+    // Update indicators
+    if (elements.indicators) {
+      elements.indicators.forEach((indicator, i) => {
+        indicator.classList.toggle("active", i === index);
+      });
+    }
   }
 
   // Intersection Observer for performance optimization
@@ -219,24 +248,36 @@
       });
     }, observerOptions);
 
-    // Observe elements that can benefit from lazy animations
+    // Observe elements
     const observedElements = document.querySelectorAll(
-      ".project-card, .about-card, .contact-card"
+      ".showcase-container, .about-card, .contact-card"
     );
     observedElements.forEach((el) => observer.observe(el));
   }
 
-  // Preload critical images
+  // Preload project images
   function preloadImages() {
-    const criticalImages = ["pic/temp-logo.svg", "pic/Pic.jpg"];
+    const criticalImages = ["pic/logo.svg", "pic/Pic.jpg"];
+    const projectImages = projects.map((project) => project.image);
+    const allImages = [...criticalImages, ...projectImages];
 
-    criticalImages.forEach((src) => {
+    allImages.forEach((src) => {
       const link = document.createElement("link");
       link.rel = "preload";
       link.as = "image";
       link.href = src;
       document.head.appendChild(link);
     });
+  }
+
+  // Performance optimization: Throttled scroll handler
+  let scrollTimeout;
+  function handleScroll() {
+    if (scrollTimeout) return;
+
+    scrollTimeout = setTimeout(() => {
+      scrollTimeout = null;
+    }, 16);
   }
 
   // Error handling wrapper
@@ -252,17 +293,15 @@
   function init() {
     initializeElements();
 
-    safeExecute(() => setProjectBackgrounds(), "setProjectBackgrounds");
     safeExecute(() => initializeMobileMenu(), "initializeMobileMenu");
     safeExecute(() => initializeSmoothScrolling(), "initializeSmoothScrolling");
-    safeExecute(() => initializeModal(), "initializeModal");
+    safeExecute(() => initializeSlideshow(), "initializeSlideshow");
     safeExecute(
       () => initializeIntersectionObserver(),
       "initializeIntersectionObserver"
     );
     safeExecute(() => preloadImages(), "preloadImages");
 
-    // Add scroll handler if needed
     window.addEventListener("scroll", handleScroll, { passive: true });
   }
 
@@ -273,7 +312,12 @@
     init();
   }
 
-  // Expose necessary functions globally for backward compatibility
-  window.openModal = openModal;
-  window.closeModal = closeModal;
+  // Expose functions for debugging
+  window.portfolioSlideshow = {
+    nextSlide,
+    prevSlide,
+    projects,
+    currentSlide: () => currentSlide,
+    elements: () => elements,
+  };
 })();
